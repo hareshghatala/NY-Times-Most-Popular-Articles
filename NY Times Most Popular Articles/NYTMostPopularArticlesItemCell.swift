@@ -24,14 +24,12 @@ class NYTMostPopularArticlesItemCell: UITableViewCell {
     // MARK: - Public functions
     
     func setArticlesItemData() {
-        self.loadImageWithURL(urlString: "")
+        
+        NYTNetworkLayer.loadImageFrom(URL: "", toImageView: self.thumbnailImageView)
+        
         self.titleLabel.text = ""
         self.subtitleLabel.text = ""
         self.publishedDateLabel.text = ""
     }
     
-    func loadImageWithURL(urlString: String) {
-        self.thumbnailImageView.image = UIImage()
-    }
-
 }

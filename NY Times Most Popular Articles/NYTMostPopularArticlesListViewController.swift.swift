@@ -21,6 +21,17 @@ class NYTMostPopularArticlesListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        let articlesURL = NYTNetworkLayer.retriveGetArticleURLString()
+        
+        NYTNetworkLayer.performGet(with: articlesURL, completion: { response, error in
+            if error != nil {
+                print(error!.localizedDescription)
+            }
+            guard let response = response else { return }
+            print("JSON: \(response)")
+        })
     }
     
     // MARK: - Navigation
