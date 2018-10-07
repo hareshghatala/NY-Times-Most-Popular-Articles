@@ -46,7 +46,9 @@ class NYTNetworkLayer {
         URLSession.shared.dataTask(with: imageURL, completionHandler: { data, _, _ in
             
             guard let data = data else { return }
-            toImageView.image = UIImage(data: data)
+            DispatchQueue.main.async {
+                toImageView.image = UIImage(data: data)
+            }
             
         }).resume()
     }

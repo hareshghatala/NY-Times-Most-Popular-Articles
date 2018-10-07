@@ -6,6 +6,15 @@
 //  Copyright © 2018 Haresh Ghatala. All rights reserved.
 //
 
+private struct MediaMetadataKeys {
+    
+    static let mediaURLString = "url"
+    static let format = "format"
+    static let height = "height"
+    static let width = "width"
+    
+}
+
 class ArticleMediaMetadata {
     
     let mediaURLString: String
@@ -14,9 +23,9 @@ class ArticleMediaMetadata {
     let width: Int
     
     init(with dictionary: [String: Any]) {
-        self.mediaURLString = dictionary["url"] as? String ?? ""
-        self.format = dictionary["format"] as? String ?? ""
-        self.height = dictionary["height"] as? Int ?? 0
-        self.width = dictionary["width"] as? Int ?? 0
+        self.mediaURLString = dictionary[MediaMetadataKeys.mediaURLString] as? String ?? ""
+        self.format = dictionary[MediaMetadataKeys.format] as? String ?? ""
+        self.height = dictionary[MediaMetadataKeys.height] as? Int ?? 0
+        self.width = dictionary[MediaMetadataKeys.width] as? Int ?? 0
     }
 }

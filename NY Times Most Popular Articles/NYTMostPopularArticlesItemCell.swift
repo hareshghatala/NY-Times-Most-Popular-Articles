@@ -23,13 +23,19 @@ class NYTMostPopularArticlesItemCell: UITableViewCell {
     
     // MARK: - Public functions
     
-    func setArticlesItemData() {
+    func setArticlesItemData(article: ArticleItem) {
+
+        self.titleLabel.text = article.title
+        self.subtitleLabel.text = article.byline
+        self.publishedDateLabel.text = article.publishedDate
         
-        NYTNetworkLayer.loadImageFrom(URL: "", toImageView: self.thumbnailImageView)
+        guard let media = article.media.first,
+            let thumbnailURLString = media.getThumbnailURLString() else {
+                return
+        }
+        NYTNetworkLayer.loadImageFrom(URL: thumbnailURLString, toImageView: self.thumbnailImageView)
         
-        self.titleLabel.text = ""
-        self.subtitleLabel.text = ""
-        self.publishedDateLabel.text = ""
+        
     }
     
 }
