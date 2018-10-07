@@ -11,6 +11,8 @@ import UIKit
 class NYTMostPopularArticlesListViewController: UIViewController {
     
     // MARK: - Constants
+    private static let articlesItemCellIdentifier = "NYTMostPopularArticlesItemCell"
+    private static let resultKey = "results"
     
     // MARK: - Outlets
     @IBOutlet private weak var articlesListTableView: UITableView!
@@ -21,16 +23,22 @@ class NYTMostPopularArticlesListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
+        self.fetchArticlesList()
+    }
+    
+    func fetchArticlesList() {
         let articlesURL = NYTNetworkLayer.retriveGetArticleURLString()
         
         NYTNetworkLayer.performGet(with: articlesURL, completion: { response, error in
             if error != nil {
                 print(error!.localizedDescription)
             }
-            guard let response = response else { return }
-            print("JSON: \(response)")
+            guard let response = response, let results = response[type(of: self).resultKey] as? [[String: Any]] else { return }
+            
+            var articlesList: [ArticleItem] = []
+            results.forEach { resultElement in
+                articlesList.append(ArticleItem(with: resultElement))
+            }
         })
     }
     
@@ -51,7 +59,8 @@ extension NYTMostPopularArticlesListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "NYTMostPopularArticlesItemCell", for: indexPath as IndexPath) as? NYTMostPopularArticlesItemCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: type(of: self).articlesItemCellIdentifier,
+                                                       for: indexPath as IndexPath) as? NYTMostPopularArticlesItemCell else {
             return NYTMostPopularArticlesItemCell()
         }
         
