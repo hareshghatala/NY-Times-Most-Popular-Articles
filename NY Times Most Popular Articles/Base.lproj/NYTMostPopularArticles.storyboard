@@ -134,7 +134,6 @@
                     </view>
                     <navigationItem key="navigationItem" title="Most Popular Articles" id="KwQ-q9-T2M">
                         <barButtonItem key="backBarButtonItem" title="Back" id="2hb-oF-g1D"/>
-                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="search" id="QLa-pm-Qhr"/>
                     </navigationItem>
                     <connections>
                         <outlet property="articlesListTableView" destination="tTD-2C-e1l" id="EvE-mg-FC2"/>
