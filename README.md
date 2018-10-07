@@ -6,6 +6,7 @@ Built with Xcode Version 9.0. Written in Swift 4.0.
 This test project shows a list of the New York Times most popular articles from the last 7 days.
 Here user is allwed to search for the artical and user can able to view details about each article.
 Also, user can read full article in Safari.
+User can also able to refresh articles list using Pull to refresh.
 
 All the code structured in MVC pattern with native network layer and not used any third party dependancy/library with unit test cases using XCTest
 
